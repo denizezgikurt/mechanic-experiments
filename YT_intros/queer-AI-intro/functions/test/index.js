@@ -1,3 +1,7 @@
+//To-Do: animate transparency of blobs and images, using the tint() function
+// Align text. How can we make it so that titles can fit properly?
+//Expanding and shrinking X logo - make a default component
+
 import {
   getPossibleStartPositions,
   removeRowsUsedByElement,
@@ -15,7 +19,7 @@ import fontHeavy from "./assets/MaccabiBlock-Bold.otf";
 import fontHeavySlanted from "./assets/MaccabiBlock-Light.otf";
 
 export const handler = ({ inputs, mechanic, sketch }) => {
-  const { width, height, eventType, artist, title, blob1, blob2, bgcolor, color, blob1_size, blob2_size } =
+  const { width, height, eventType, artist, title, blob1, blob2, bgcolor, color, blob1_size, blob2_size, blob1_xpos, blob1_ypos } =
     inputs;
   const artistText = artist.toUpperCase();
   const titleText = title.toUpperCase();
@@ -321,21 +325,22 @@ export const handler = ({ inputs, mechanic, sketch }) => {
 
   const titleAnimate = () => {
     sketch.fill("#000000");
-    sketch.textAlign(sketch.CENTER, sketch.BOTTOM);
+    sketch.textAlign(sketch.LEFT, sketch.BOTTOM);
     sketch.textFont(objSansHeavy);
     sketch.textSize(height / 12);
-    sketch.text(title, height/2, height / 2 - height / 20);
+    sketch.text(title, 0, height / 2 - height / 20);
   };
 
   const eventAnimate = () => {
     sketch.fill("#FFFFFF");
-    sketch.textAlign(sketch.CENTER, sketch.BOTTOM);
+    sketch.textAlign(sketch.LEFT, sketch.BOTTOM);
     sketch.textFont(objSansRegular);
     sketch.textSize(height / 20);
     sketch.text(eventType, 0, height / 2 - height / 20);
   };
 
   const nameAnimate = () => {
+    sketch.textAlign(sketch.LEFT, sketch.BOTTOM);
     sketch.textSize(height / 20);
     sketch.text(artist, 0, height / 2 - height / 20);
   };
@@ -390,19 +395,19 @@ export const handler = ({ inputs, mechanic, sketch }) => {
     //TO-DO:
     //Title
     //setTimeout is native JS function that runs a function after 3000 miliseconds
-    setTimeout(titleAnimate, 3000);
+    setTimeout(titleAnimate, 1000);
     
     //Event
-    setTimeout(eventAnimate, 5000);
+    setTimeout(eventAnimate, 1500);
     //Artist name
-    setTimeout(nameAnimate, 10000);
+    setTimeout(nameAnimate, 2000);
 
     //TO-DO: load blobs and code animation
     //blob 1
-    sketch.image(img,-500,446, blob1_size, blob1_size * 0.3);
+    sketch.image(img, blob1_xpos,blob1_ypos, blob1_size, blob1_size * 0.2);
 
     //blob2
-    sketch.image(img2,200,446, blob2_size, blob2_size * 1.5);
+    sketch.image(img2,width / 2, height * 0.1, blob2_size, blob2_size * 1.5);
 
     mechanic.done();
   };
@@ -416,10 +421,26 @@ export const inputs = {
   blob1_size: { 
     type: "number", 
     min: 100, 
-    max: 1000, 
+    max: 2000, 
     step: 5, 
     slider: true, 
-    default: 500 
+    default: 1000 
+   },
+   blob1_xpos: { 
+    type: "number", 
+    min: -500, 
+    max: 2000, 
+    step: 5, 
+    slider: true, 
+    default: 0 
+   },
+   blob1_ypos: { 
+    type: "number", 
+    min: -500, 
+    max: 1200, 
+    step: 5, 
+    slider: true, 
+    default: 0 
    },
   blob2_size: { 
     type: "number", 
