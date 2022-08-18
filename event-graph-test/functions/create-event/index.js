@@ -377,6 +377,7 @@ export const inputs = {
   image: {
     type: "image",
   },
+  
   blob1: {
     type: "image",
   },
