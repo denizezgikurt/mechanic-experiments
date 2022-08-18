@@ -377,6 +377,12 @@ export const inputs = {
   image: {
     type: "image",
   },
+  blob1: {
+    type: "image",
+  },
+  blob2: {
+    type: "image",
+  },
   color: {
     type: "color",
     default: "#84AEFF",
