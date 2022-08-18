@@ -31,6 +31,10 @@ export const handler = ({ inputs, mechanic, sketch }) => {
   const availableRows = Array.from({ length: rows }, (_, k) => k);
 
   let img;
+  let img2;
+  let img3;
+  let blob1_w;
+  let blob1_h;
   let imgGraphic;
   let objSansRegular;
   let objSansHeavy;
