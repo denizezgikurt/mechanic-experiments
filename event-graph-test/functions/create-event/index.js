@@ -60,7 +60,7 @@ export const handler = ({ inputs, mechanic, sketch }) => {
   };
 
   const setStylingBase = () => {
-    sketch.background("white");
+    sketch.background("#D1BDE9");
     sketch.stroke(color);
     sketch.fill(color);
     sketch.textFont(objSansRegular);
@@ -353,6 +353,13 @@ export const handler = ({ inputs, mechanic, sketch }) => {
 
     drawRectangles();
 
+      //blob 1
+      sketch.image(img, blob1_xpos,blob1_ypos, blob1_size, blob1_size * 0.2);
+
+      //blob2
+      sketch.image(img2,width / 2, height * 0.1, blob2_size, blob2_size * 1.5);
+  
+
     mechanic.done();
   };
 };
@@ -385,7 +392,7 @@ export const inputs = {
   },
   color: {
     type: "color",
-    default: "#84AEFF",
+    default: "#8A6CEF",
     model: "hex",
   },
   width: {
@@ -399,6 +406,8 @@ export const inputs = {
     editable: false,
   },
 };
+
+
 
 export const presets = {
   x2: {
